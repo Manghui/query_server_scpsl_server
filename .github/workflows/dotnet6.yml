@@ -1,0 +1,35 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET6
+
+env:
+    Manghui_REFERENCES_URL: https://scp.nodefunction.net/Refs.zip
+    BETA_Manghui_REFERENCES: ${{ github.workspace }}/src/References
+    
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+      
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Get dependencies
+      shell: pwsh
+      run: |
+        Invoke-WebRequest -Uri ${{ env.Manghui_REFERENCES_URL }} -OutFile ${{ github.workspace }}/References.zip
+        Expand-Archive -Path References.zip -DestinationPath ${{ env.BETA_Manghui_REFERENCES }}
+    - name: Build
+      run: dotnet build --no-restore --source ${{ github.workspace }}/src
+    - name: Test
+      run: dotnet test --no-build --source ${{ github.workspace }}/src --verbosity normal 
