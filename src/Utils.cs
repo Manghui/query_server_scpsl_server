@@ -38,7 +38,8 @@ namespace ServerQueryer
             request.ContentLength = bytes.Length;
 
             //设置Key
-            request.Headers.Add("Manghui-Key", Md5String(key));
+            request.Headers.Add("Manghui-Server-Id", Md5String(EntryPoint.Singleton.PluginConfig.server_id));
+            request.Headers.Add("Manghui-Server-Key", Md5String(key));
 
             Stream stream = request.GetRequestStream();
             stream.Write(bytes, 0, bytes.Length);
