@@ -1,1 +1,2 @@
-# 待工
+# ServerQueryer
+制作中(making)...
