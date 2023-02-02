@@ -1,2 +1,2 @@
 # ServerQueryer
-制作中(making)...
+请耐心等待另一端完成！
