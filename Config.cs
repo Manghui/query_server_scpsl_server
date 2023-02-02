@@ -4,6 +4,7 @@ namespace ServerQueryer
 {
 	public class Config
     {
-        public bool debug { get; private set; } = false;
+        []
+        public bool is_enable { get; private set; } = true;
     }
 }

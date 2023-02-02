@@ -15,6 +15,8 @@ namespace ServerQueryer
         void LoadPlugin()
         {
             Singleton = this;
+            if (!PluginConfig.is_enable)
+                return;
             Log.Info("Loaded plugin, register events...");
             EventManager.RegisterEvents<EventHandlers>(this);
             Log.Info($"Plugin Loaded.");
