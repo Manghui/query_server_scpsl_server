@@ -35,9 +35,8 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="EventHandlers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Structures.cs" />
-    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -55,18 +54,11 @@
     <Reference Include="Mirror-Publicized">
       <HintPath>D:\SCP_Plugins\Others\References\Mirror-Publicized.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="NorthwoodLib">
       <HintPath>D:\SCP_Plugins\Others\References\NorthwoodLib.dll</HintPath>
     </Reference>
     <Reference Include="PluginAPI">
       <HintPath>D:\SCP_Plugins\Others\References\PluginAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>D:\SCP_Plugins\Others\References\UnityEngine.dll</HintPath>
@@ -80,9 +72,6 @@
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>D:\SCP_Plugins\Others\References\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
