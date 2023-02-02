@@ -5,7 +5,7 @@ name: .NET6
 
 env:
     Manghui_REFERENCES_URL: https://scp.nodefunction.net/Refs.zip
-    BETA_Manghui_REFERENCES: ${{ github.workspace }}/References
+    BETA_Manghui_REFERENCES: ${{ github.workspace }}/src/References
     
 on:
   push:
@@ -30,6 +30,6 @@ jobs:
         Invoke-WebRequest -Uri ${{ env.Manghui_REFERENCES_URL }} -OutFile ${{ github.workspace }}/References.zip
         Expand-Archive -Path References.zip -DestinationPath ${{ env.BETA_Manghui_REFERENCES }}
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --source ${{ github.workspace }}/src
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --source ${{ github.workspace }}/src --verbosity normal 
