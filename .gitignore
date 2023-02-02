@@ -1,4 +1,4 @@
-bin/
-obj/
-/.vs
-/src/packages/Newtonsoft.Json.13.0.2
+/src/bin/
+/src/obj/
+/src/packages
+/src/.vs
