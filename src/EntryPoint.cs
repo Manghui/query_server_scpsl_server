@@ -20,7 +20,7 @@ namespace ServerQueryer
         private static long roundStartTime;
 
         [PluginPriority(LoadPriority.Highest)]
-        [PluginEntryPoint("ServerQueryer", "1.0.0", "A Scp:SL Plugin for querying server status.", "Manghui")]
+        [PluginEntryPoint("ServerQueryer", "1.0.1", "A Scp:SL Plugin for querying server status.", "Manghui")]
         void LoadPlugin()
         {
             Singleton = this;
@@ -40,6 +40,10 @@ namespace ServerQueryer
         // 判断回合状态并非只有一种方法! 有最优解均可等效替代
         [PluginEvent(ServerEventType.RoundRestart)]
         public void OnRoundRestart() { shouldUpdateRightNow = true; roundStartTime = -10086; }
+
+        // 判断回合状态并非只有一种方法! 有最优解均可等效替代
+        [PluginEvent(ServerEventType.RoundEnd)]
+        public void OnRoundEnd() { shouldUpdateRightNow = true; roundStartTime = -10000; }
 
         // 判断回合状态并非只有一种方法! 有最优解均可等效替代
         [PluginEvent(ServerEventType.RoundStart)]

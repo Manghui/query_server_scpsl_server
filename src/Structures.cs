@@ -5,7 +5,7 @@ namespace ServerQueryer
     //大家都可以在任何地方补充
     public class UpdateInfo
     {
-        public string formatVersion = "1.0.0";
+        public string formatVersion = "1.0.1";
         public List<PlayerStatus> playerStatus { get; set; } = new List<PlayerStatus>();
         public ServerStatus serverStatus { get; set; } = new ServerStatus();
     }
