@@ -2,3 +2,5 @@
 /src/obj/
 /src/packages
 /src/.vs
+/.vs
+/obj/Debug
