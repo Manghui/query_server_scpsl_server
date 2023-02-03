@@ -11,7 +11,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(getData("https://scp.nodefunction.net/api/serverqueryer/query.php","manghui_first", "718d738b54258808","一服"));
+            Console.WriteLine(getData("https://yourdomain/api/query.php","", "","一服"));
             Console.Read();
         }
         private static string getData(string api, string id, string key, string formatted_name)
