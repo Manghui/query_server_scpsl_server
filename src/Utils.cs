@@ -18,7 +18,7 @@ namespace ServerQueryer
         public static string Md5String(string Content)
         {
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            string t2 = BitConverter.ToString(md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Content)), 4, 8);
+            string t2 = BitConverter.ToString(md5.ComputeHash(Encoding.UTF8.GetBytes(Content)), 4, 8);
             t2 = t2.Replace("-", "");
             t2 = t2.ToLower();
             return t2;
