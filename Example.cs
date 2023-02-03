@@ -32,8 +32,11 @@ namespace Example
                 reader.Close();
 
                 var ri = JsonConvert.DeserializeObject<UpdateInfo>(result, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Include });
+                
                 if (ri.formatVersion == "1.0.4")
                 {
+                    if ((new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds() - ri.updateTime) >= 25)
+                        return formatted_name + " 离线";
                     int i = 0;
                     string admin_list = String.Empty;
                     foreach (var cat4 in ri.playerStatus)
@@ -80,6 +83,7 @@ namespace Example
             public string formatVersion = "1.0.4";
             public List<PlayerStatus> playerStatus { get; set; } = new List<PlayerStatus>();
             public ServerStatus serverStatus { get; set; } = new ServerStatus();
+            public int updateTime = 0;
         }
         public class PlayerStatus
         {
