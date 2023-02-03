@@ -31,3 +31,5 @@
 > *2. 找到插件同等目录下的/ServerQueryer/config.yaml*
 >
 > *3. 更改你的接口和salt 申请一个id和key 即可使用共享接口和共享机器人*
+> 
+> *4. 请求接口,共享接口的update.php改为 query.php?id={id}&key={key} key是加密后的key 只需要在后台输入/getquerykey 即可获取*
