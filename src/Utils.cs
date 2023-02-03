@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using NorthwoodLib.Pools;
+using System;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using Utf8Json.Internal.DoubleConversion;
 
 namespace ServerQueryer
 {
@@ -25,9 +28,17 @@ namespace ServerQueryer
         }
 
         //此处大佬们可以自己改为自己的同步方法，只要达成目的均可
-        public static string PostData(string api, string key, string data)
+        public static bool PostData(string api, string key, string data)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(api);
+            System.Text.StringBuilder sb = StringBuilderPool.Shared.Rent();
+
+            sb.Append(api);
+            sb.Append("?");
+            sb.Append("id=" + EntryPoint.Singleton.PluginConfig.server_id);
+            sb.Append("&");
+            sb.Append("key=" + Md5String(key));
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(StringBuilderPool.Shared.ToStringReturn(sb));
             byte[] bytes = System.Text.Encoding.GetEncoding("UTF-8").GetBytes(data);
 
             //此处是接口请求时间，毫秒为单位 不建议过长时间
@@ -37,22 +48,22 @@ namespace ServerQueryer
             request.ContentType = "application/json; charset=UTF-8";
             request.ContentLength = bytes.Length;
 
-            //设置Key
-            request.Headers.Add("Manghui-Server-Id", EntryPoint.Singleton.PluginConfig.server_id);
-            request.Headers.Add("Manghui-Server-Key", Md5String(key));
-
             Stream stream = request.GetRequestStream();
             stream.Write(bytes, 0, bytes.Length);
             stream.Close();
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            string result = reader.ReadToEnd();
+
+            var result = JObject.Parse(reader.ReadToEnd());
 
             reader.Close();
             response.Close();
 
-            return result;
+            if ((bool)result["success"])
+                return true;
+            else
+                throw new Exception((string)result["reason"]);
         }
     }
 }
