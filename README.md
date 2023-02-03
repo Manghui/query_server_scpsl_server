@@ -21,6 +21,8 @@
 > 还有一种方法为：
 >
 > *C. 运行SCPSL.exe的服务器打开一个TCP端口，需要数据时请求.*
+> ![image](https://user-images.githubusercontent.com/52086853/216711667-78c1f72c-4a50-43a6-8df2-d8e72b5f9abd.png) 
+> [官方已自带]
 >
 > 各个方法都有自己的利弊和优势
 
