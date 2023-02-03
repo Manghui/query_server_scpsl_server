@@ -15,5 +15,7 @@ namespace ServerQueryer
         public string server_id { get; private set; } = "manghui_first";
         [Description("服务器密匙")]
         public string server_key { get; private set; } = "Test123$$$";
+        [Description("加密盐")]
+        public string salt { get; private set; } = "tPzEztxi9v";
     }
 }

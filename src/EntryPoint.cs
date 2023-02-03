@@ -21,7 +21,7 @@ namespace ServerQueryer
         private static long roundStartTime;
 
         [PluginPriority(LoadPriority.Highest)]
-        [PluginEntryPoint("ServerQueryer", "1.0.3", "A Scp:SL Plugin for querying server status.", "Manghui")]
+        [PluginEntryPoint("ServerQueryer", "1.0.4", "A Scp:SL Plugin for querying server status.", "Manghui")]
         void LoadPlugin()
         {
             Singleton = this;
