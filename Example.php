@@ -25,7 +25,7 @@ switch ((int)$json["serverStatus"]["roundStartTime"]) {
         $roundinfo = "回合结束";
         break;
     default:
-        $sec = strtotime("now") - (int)$json["serverStatus"]["roundStartTime"];
+        $sec = strtotime("now") - (int)($json["serverStatus"]["roundStartTime"] / 1000);
         $roundinfo .= str_replace("-","M",str_replace("=","S",date("i-s=",$sec)));
         break;
 }
