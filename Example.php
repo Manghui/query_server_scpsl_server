@@ -6,7 +6,7 @@ $key = "你的KEY";
 $json = json_decode(file_get_contents($api."?id=".$id."&key=".$key),true);
 if(!$json["success"])
     die($json["reason"]);
-echo $formatted_server_name . " ";
+echo $formatted_server_name != "" ? $formatted_server_name . " " : "";
 if($json["formatVersion"] != "1.0.4")
     die("解析版本不匹配");
 
@@ -29,4 +29,15 @@ switch ((int)$json["serverStatus"]["roundStartTime"]) {
         $roundinfo .= str_replace("-","M",str_replace("=","S",date("i-s=",$sec)));
         break;
 }
+$adminList = "";
+foreach ($json["playerStatus"] as $obj){
+    if($obj["remoteAdminAccess"]){
+        $adminList .= $obj["nickName"]."\n";
+    }
+}
 echo "在线: ".count($json['playerStatus'])." ".$roundinfo;
+if($adminList !== ""){
+    echo "\n";
+    echo "在线的管理员：\n";
+    echo substr($adminList,0,strlen($adminList)-1);
+}
